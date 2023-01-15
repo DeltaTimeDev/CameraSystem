@@ -17,9 +17,26 @@ class STRATEGYCAMERASYSTEM_API UCameraPawnComponent : public UPawnComponent
 
 public:
 	virtual void BeginPlay() override;
-	void MoveUp(const FInputActionValue& Value);
+	void Move(const FInputActionValue& Value);
+	void Rotate(const FInputActionValue& Value);
+	void Zoom(const FInputActionValue& Value);
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* MoveAction;
-	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* RotateAction;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* ZoomAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class APawn* Pawn;
+
+	class UCameraComponent* CameraComponent;
+	class USpringArmComponent* SpringArmComponent;
+
+private:
+	float ZoomDistance;
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	float StartDistance = 900.0f;
 };
